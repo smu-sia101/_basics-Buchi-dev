@@ -24,11 +24,22 @@ namespace MonolithApp.Demo.Services
 
         public void UpdateProduct(Product product)
         {
+            CheckProductIfExisting(product);
             db.Update(product);
         }
 
-        public void DeleteProduct(Product product)
+        private void CheckProductIfExisting(Product product)
         {
+            var _product = GetProductById(product.Id);
+            if (_product == null)
+            {
+                throw new Exception("Product not found");
+            }
+        }
+
+        public void DeleteProductByID(Product product)
+        {
+            CheckProductIfExisting(product);
             db.Delete(product);
         }
 
@@ -41,5 +52,7 @@ namespace MonolithApp.Demo.Services
         {
             return db.Table<Product>().ToList();
         }
+
+        
     }
 }

@@ -103,7 +103,7 @@ namespace MonolithApp.Demo.Controllers
 
                 try
                 {
-                    _productsService.DeleteProduct(product);
+                    _productsService.DeleteProductByID(product);
                     TempData["Success"] = $"Product {id} was successfully deleted";
                 }
                 catch (Exception ex)
